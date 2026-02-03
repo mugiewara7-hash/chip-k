@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Chip K – Jasa Service Komputer Jakarta Timur</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body { font-family: Arial, sans-serif; margin: 0; background: #f0f2f5; scroll-behavior: smooth; }
+header { background: linear-gradient(135deg,#0d6efd,#00c6ff); color: #fff; padding: 40px 20px; text-align: center; }
+.logo-header { display: flex; align-items: center; justify-content: center; gap: 15px; }
+.logo { width: 60px; height: auto; border-radius: 10px; }
+section { padding: 50px 20px; max-width: 1000px; margin: auto; background: #fff; border-radius: 20px; }
+.services { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 20px; }
+.card { padding: 25px; border-radius: 15px; color: #fff; background: linear-gradient(135deg,#4facfe,#00f2fe); text-align: center; cursor: pointer; transition: all 0.4s; position: relative; overflow: hidden; }
+.card:hover { transform: translateY(-10px) scale(1.05); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
+footer { margin-top: 60px; backdrop-filter: blur(12px); background: rgba(13,110,253,0.85); color: #fff; padding: 40px 20px; }
+.footer-container { max-width: 1000px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 30px; }
+.footer-box h4 { border-bottom: 2px solid rgba(255,255,255,0.4); display: inline-block; padding-bottom: 5px; }
+.footer-box a { color: #fff; text-decoration: none; }
+.footer-box a:hover { opacity: 0.8; }
+.footer-bottom { text-align: center; margin-top: 25px; opacity: 0.9; }
+.map iframe { width: 100%; height: 200px; border-radius: 15px; border: 0; }
+.whatsapp-float { position: fixed; bottom: 20px; right: 20px; width: 70px; height: 70px; border-radius: 50%; background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 32px; cursor: pointer; animation: pulse 2s infinite; z-index: 999; }
+@keyframes pulse { 50% { transform: scale(1.15) } }
+.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 2000; animation: fadeIn 0.3s; }
+.modal-content { background: #fff; margin: 10% auto; padding: 30px; width: 90%; max-width: 420px; border-radius: 20px; animation: popUp 0.5s ease; box-shadow: 0 20px 50px rgba(0,0,0,0.3); transition: transform 0.4s; }
+.modal.show { display: block; }
+.close { float: right; font-size: 28px; cursor: pointer; color: #0d6efd; transition: 0.3s; }
+.close:hover { color: #084298; }
+input, button { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #ccc; font-size: 16px; }
+button { background: #0d6efd; color: #fff; border: none; cursor: pointer; transition: 0.2s; }
+button:hover { transform: scale(1.05); background: #084298; }
+#successMessage { text-align: center; color: green; margin-top: 10px; display: none; }
+@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+@keyframes popUp { from { transform: scale(0.5) translateY(-50px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-header">
+    <img src="logo.png" alt="Logo Chip K" class="logo">
+    <h1>Chip K</h1>
+  </div>
+  <h2>Jasa Service Komputer & Laptop</h2>
+  <p>Cepat • Terpercaya • Bergaransi</p>
+</header>
+
+<section>
+<h2>Layanan Kami</h2>
+<div class="services">
+  <div class="card" data-title="💻 Service Laptop"><h3>💻 Service Laptop</h3><p>Install ulang, LCD & keyboard, upgrade RAM/SSD.</p></div>
+  <div class="card" data-title="🖥️ Service Komputer"><h3>🖥️ Service Komputer</h3><p>PC mati, restart, upgrade hardware, motherboard.</p></div>
+  <div class="card" data-title="💾 Install Software"><h3>💾 Install Software</h3><p>Windows/Office, antivirus, driver, software editing.</p></div>
+  <div class="card" data-title="🏠 Service Panggilan"><h3>🏠 Service Panggilan</h3><p>Datang ke lokasi, area Jakarta Timur.</p></div>
+  <div class="card" data-title="📊 Konsultasi"><h3>📊 Konsultasi</h3><p>Diagnosa kerusakan, estimasi biaya, rekomendasi solusi.</p></div>
+  <div class="card" data-title="🛠️ Perakitan PC"><h3>🛠️ Perakitan PC</h3><p>PC gaming/editing/kantor, konsultasi budget, komponen bergaransi.</p></div>
+</div>
+</section>
+
+<!-- Modal Registrasi -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<span class="close" id="closeModal">&times;</span>
+<h3 id="modalTitle">Daftar Layanan</h3>
+<form id="registerForm">
+<input type="text" id="nama" placeholder="Nama Lengkap" required>
+<input type="text" id="model" placeholder="Model Perangkat" required>
+<input type="tel" id="hp" placeholder="No WhatsApp" required>
+<div id="alamatContainer">
+  <input type="text" id="alamat" placeholder="Alamat Lengkap" required>
+</div>
+<button type="submit">Kirim</button>
+</form>
+<div id="successMessage"></div>
+</div>
+</div>
+
+<footer>
+<div class="footer-container">
+ <div class="footer-box">
+  <h4>Chip K</h4>
+  <p>Jasa service komputer & laptop profesional Jakarta Timur.</p>
+  <h3><p><a href="https://wa.me/6289503909778" target="_blank">💬 WhatsApp</a></p></h3>
+ </div>
+ <div class="footer-box">
+  <h4>Alamat</h4>
+  <p>Jl. Pendidikan gg Totong I<br>Rt 004/Rw 009 No 45<br>Pekayon, Jakarta Timur</p>
+ </div>
+ <div class="footer-box map">
+  <h4>Lokasi</h4>
+  <iframe src="https://maps.google.com/maps?q=Jl.%20Pendidikan%20gg%20Totong%20I%20Pekayon%20Jakarta%20Timur&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+ </div>
+</div>
+<div class="footer-bottom">© 2026 Chip K • Service Komputer Jakarta Timur</div>
+</footer>
+
+<div class="whatsapp-float" onclick="openModal()">📱</div>
+
+<script>
+// Modal & Form
+const modal = document.getElementById("modal");
+const form = document.getElementById("registerForm");
+const successMsg = document.getElementById("successMessage");
+const modalTitle = document.getElementById("modalTitle");
+
+function openModal(layanan="") {
+  modal.classList.add("show");
+  resetForm();
+  modalTitle.innerText = layanan ? `Daftar Layanan: ${layanan}` : "Daftar Layanan";
+}
+
+function closeModal() {
+  modal.classList.remove("show");
+  resetForm();
+}
+
+function resetForm() {
+  form.reset();
+  successMsg.style.display = "none";
+}
+
+document.getElementById("closeModal").onclick = closeModal;
+window.onclick = (e) => { if(e.target==modal) closeModal(); }
+
+document.querySelectorAll(".card").forEach(card=>{
+  card.addEventListener("click",()=>{
+    openModal(card.dataset.title);
+  });
+});
+
+form.addEventListener("submit",function(e){
+  e.preventDefault();
+  const nama = document.getElementById("nama").value.trim();
+  const model = document.getElementById("model").value.trim();
+  let hp = document.getElementById("hp").value.trim().replace(/^0/, "62");
+  const alamat = document.getElementById("alamat").value.trim();
+  const layanan = modalTitle.innerText.replace("Daftar Layanan: ","");
+
+  if(!nama||!model||!hp||!alamat){
+    alert("Semua field wajib diisi!");
+    return;
+  }
+
+  const d = new Date();
+  const resi = `CHIPK-${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}-${String(d.getHours()).padStart(2,"0")}${String(d.getMinutes()).padStart(2,"0")}${String(d.getSeconds()).padStart(2,"0")}`;
+
+  let pesan = `Halo Chip K 👋\n🧾 Nomor Resi: ${resi}\n👤 Nama: ${nama}\n💻 Model Perangkat: ${model}\n📱 WhatsApp: ${hp}\n🛠️ Layanan: ${layanan}\n🏠 Alamat: ${alamat}`;
+
+  successMsg.innerHTML = `✅ Pendaftaran berhasil<br>🧾 Nomor Resi:<br><b>${resi}</b>`;
+  successMsg.style.display = "block";
+
+  const waURL = `https://wa.me/6289503909778?text=${encodeURIComponent(pesan)}`;
+  window.open(waURL,"_blank");
+
+  setTimeout(closeModal,5000);
+});
+</script>
+</body>
+</html>
