@@ -5,6 +5,7 @@
 <title>Chip K – Jasa Service Komputer Jakarta Timur</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
+/* ===== Website Utama ===== */
 body { font-family: Arial, sans-serif; margin: 0; background: #f0f2f5; scroll-behavior: smooth; }
 header { background: linear-gradient(135deg,#0d6efd,#00c6ff); color: #fff; padding: 40px 20px; text-align: center; }
 .logo-header { display: flex; align-items: center; justify-content: center; gap: 15px; }
@@ -32,7 +33,44 @@ button { background: #0d6efd; color: #fff; border: none; cursor: pointer; transi
 button:hover { transform: scale(1.05); background: #084298; }
 #successMessage { text-align: center; color: green; margin-top: 10px; display: none; }
 @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
-@keyframes popUp { from { transform: scale(0.5) translateY(-50px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; }
+@keyframes popUp { from { transform: scale(0.5) translateY(-50px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+
+/* ===== Toast WhatsApp Halus & Elegan ===== */
+#waToast {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background: #25D366;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+#waToast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#waToast img#waIcon {
+  width: 24px;
+  height: 24px;
+}
+
+@keyframes gentlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
 </style>
 </head>
 <body>
@@ -49,11 +87,11 @@ button:hover { transform: scale(1.05); background: #084298; }
 <section>
 <h2>Layanan Kami</h2>
 <div class="services">
-  <div class="card" data-title="💻 Service Laptop"><h3>💻 Service Laptop</h3><p>Install ulang, LCD & keyboard, upgrade RAM/SSD.</p></div>
-  <div class="card" data-title="🖥️ Service Komputer"><h3>🖥️ Service Komputer</h3><p>PC mati, restart, upgrade hardware, motherboard.</p></div>
-  <div class="card" data-title="💾 Install Software"><h3>💾 Install Software</h3><p>Windows/Office, antivirus, driver, software editing.</p></div>
-  <div class="card" data-title="🏠 Service Panggilan"><h3>🏠 Service Panggilan</h3><p>Datang ke lokasi, area Jakarta Timur.</p></div>
-  <div class="card" data-title="📊 Konsultasi"><h3>📊 Konsultasi</h3><p>Diagnosa kerusakan & estimasi biaya</p></div>
+  <div class="card" data-title="💻 Service Laptop"><h3>💻 Service Laptop</h3><p>Troubleshoot, Install ulang, LCD & keyboard, backup data, upgrade RAM/SSD.</p></div>
+  <div class="card" data-title="🖥️ Service Komputer"><h3>🖥️ Service Komputer</h3><p>Troubleshoot, Install ulang, PC mati, restart sendiri, backup data, upgrade motherboard/RAM/SSD/VGA/PSU.</p></div>
+  <div class="card" data-title="💾 Install Software"><h3>💾 Install Software</h3><p>Ms.Office, antivirus, driver, Mozilla, Chrome, whatsapp, game, dll.</p></div>
+  <div class="card" data-title="🏠 Service Panggilan"><h3>🏠 Service Panggilan</h3><p>Melayani perbaikan datang ke lokasi, area Jakarta Timur & sekitarnya.</p></div>
+  <div class="card" data-title="📊 Konsultasi"><h3>📊 Konsultasi</h3><p>Perancangan kebutuhan, spesifikasi, diagnosa kerusakan, & estimasi biaya.</p></div>
   <div class="card" data-title="🛠️ Perakitan PC"><h3>🛠️ Perakitan PC</h3><p>PC gaming/editing/kantor, konsultasi budget, komponen bergaransi.</p></div>
 </div>
 </section>
@@ -81,7 +119,7 @@ button:hover { transform: scale(1.05); background: #084298; }
  <div class="footer-box">
   <h4>Chip K</h4>
   <p>Jasa service komputer & laptop profesional Jakarta Timur.</p>
-  <h3><p><a href="https://wa.me/6289503909778" target="_blank">💬 WhatsApp</a></p></h3>
+  <p>Kontak kami:<a href="https://wa.me/6289503909778" target="_blank"><h3>💬 WhatsApp</h3></a></p>
  </div>
  <div class="footer-box">
   <h4>Alamat</h4>
@@ -95,10 +133,16 @@ button:hover { transform: scale(1.05); background: #084298; }
 <div class="footer-bottom">© 2026 Chip K • Service Komputer Jakarta Timur</div>
 </footer>
 
+<!-- Toast WhatsApp Halus & Elegan -->
+<div id="waToast">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" id="waIcon">
+  Chat WhatsApp Chip K!
+</div>
+
 <div class="whatsapp-float" onclick="openModal()">📱</div>
 
 <script>
-// Modal & Form
+// ===== Modal & Form =====
 const modal = document.getElementById("modal");
 const form = document.getElementById("registerForm");
 const successMsg = document.getElementById("successMessage");
@@ -155,6 +199,33 @@ form.addEventListener("submit",function(e){
 
   setTimeout(closeModal,5000);
 });
+
+// ===== Toast WhatsApp Halus & Elegan =====
+window.addEventListener("load", () => {
+  const toast = document.getElementById("waToast");
+  const icon = document.getElementById("waIcon");
+
+  // Tampilkan toast sekali saat halaman dimuat
+  setTimeout(() => {
+    toast.classList.add("show");
+    // Hilangkan otomatis setelah 12 detik
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 12000);
+  }, 2000);
+
+  // Klik toast -> buka WhatsApp
+  toast.addEventListener("click", () => {
+    window.open("https://wa.me/6289503909778", "_blank");
+  });
+
+  // Animasi gerakan ringan setiap 5 detik
+  setInterval(() => {
+    icon.style.animation = "gentlePulse 0.6s ease";
+    setTimeout(() => { icon.style.animation = ""; }, 600);
+  }, 5000);
+});
 </script>
+
 </body>
 </html>
